@@ -22,19 +22,24 @@ class InputForm(FlaskForm):
     info = TextAreaField("Additional Information", validators=[DataRequired()])
     submit = SubmitField('Submit')
 
-class LoginForm(FlaskForm):
+class RegisterForm(FlaskForm):
     username = StringField('Username',
-                            validators=[DataRequired(), Length(min=2, max=10)])
+                            validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',
-                        validators=[DataRequired(), Email()])
+                        validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password',
-                                    validators=[DataRequired(), EqualTo('password')])
+                                validators=[DataRequired(), EqualTo('password')])
+    first_name = StringField('First Name',
+                        validators=[DataRequired()])
+    last_name = StringField('Last Name',
+                        validators=[DataRequired(), Email(),  Length(max=120)])
     submit = SubmitField('Sign Up')
 
-class RegisterForm(FlaskForm):
+class LoginForm(FlaskForm):
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
+
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
