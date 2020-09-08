@@ -25,7 +25,7 @@ def inputPage():
 @app.route("/signin", methods=['GET', 'POST'])
 def signin():
     title = "Sign In"
-    form = RegisterForm()
+    form = LoginForm()
     if form.email.data == 'temp@temp.com' and form.password.data == 'password':
         flash('You have been logged in!', 'success')
         return redirect(url_for('index'))
@@ -38,7 +38,7 @@ def signin():
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
     title = "Sign Up"
-    form = LoginForm()
+    form = RegisterForm()
     if form.validate_on_submit():
         flash(f'Account created for {form.username.data}!', 'success')
         return redirect(url_for('index'))
