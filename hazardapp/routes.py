@@ -4,13 +4,15 @@ from hazardapp.forms import RegisterForm, LoginForm, InputForm
 from hazardapp.models import User, Hazards
 
 @app.route("/")
+@app.route("/home")
 def index():
     title = "Generic Input- Home"
     return render_template("home.html",
     title = title)
 
 @app.route("/input", methods=['GET', 'POST'])
-def inputPage():
+# @login_required
+def input_hazard():
     title = "Input"
     form = InputForm()
     if form.validate_on_submit():
@@ -20,27 +22,26 @@ def inputPage():
                             title = title,
                             form=form)
 
-@app.route("/signin", methods=['GET', 'POST'])
-def signin():
-    title = "Sign In"
+@app.route("/register", methods=['GET', 'POST'])
+def register():
+    title = "Sign Up"
     form = RegisterForm()
     if form.email.data == 'temp@temp.com' and form.password.data == 'password':
         flash('You have been logged in!', 'success')
         return redirect(url_for('index'))
     else:
         flash('Login Unsuccessful. Please check username and password', 'danger')
-    return render_template("signin.html",
+    return render_template("register.html",
                             title = title,
                             form = form)
 
-@app.route("/signup", methods=['GET', 'POST'])
-def signup():
-    title = "Sign Up"
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    title = "Log In"
     form = LoginForm()
     if form.validate_on_submit():
-
         flash(f'Account created for {form.username.data}!', 'success')
         return redirect(url_for('index'))
-    return render_template("signup.html",
-    title = title,
-    form = form)
+    return render_template("login.html",
+            title = title,
+            form = form)
