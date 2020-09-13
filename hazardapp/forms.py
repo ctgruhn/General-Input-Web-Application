@@ -1,17 +1,10 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, TextAreaField, DateField, SubmitField, PasswordField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
+from hazardapp.config import AREA_LIST, HAZARD_LIST
 from datetime import datetime
 
 class InputForm(FlaskForm):
-    AREA_LIST = [('dl1', 'Development Line 1'),
-            ('dl2', 'Development Line 2'),
-            ('caf', 'Cafeteria')]
-
-    HAZARD_LIST = [('fall', 'Fall Hazard'),
-            ('shock', 'Electric Shock'),
-            ('pierce', 'Piercing Hazard')]
-
     first_name = StringField('First Name', validators=[DataRequired()])
     last_name = StringField('Last Name', validators=[DataRequired()])
     date = DateField('Date', validators=[DataRequired()], default=datetime.utcnow)
@@ -22,7 +15,7 @@ class InputForm(FlaskForm):
     info = TextAreaField("Additional Information", validators=[DataRequired()])
     submit = SubmitField('Submit')
 
-class LoginForm(FlaskForm):
+class RegisterForm(FlaskForm):
     username = StringField('Username',
                             validators=[DataRequired(), Length(min=2, max=10)])
     email = StringField('Email',
@@ -34,7 +27,7 @@ class LoginForm(FlaskForm):
     last_name = StringField('Last Name', validators=[DataRequired()])
     submit = SubmitField('Sign Up')
 
-class RegisterForm(FlaskForm):
+class LoginForm(FlaskForm):
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
