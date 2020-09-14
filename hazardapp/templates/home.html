@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="text-center">Hazards</h1>
+{% for hazard in hazards %}
+    <article class="media content-section">
+        <div class="media-body">
+            <h4 class="mt-4">{{ hazard.task }}</h4>
+            <div class="article-metadata">
+                {{ hazard.author.first_name }} {{ hazard.author.last_name }}
+                <small class="text-muted ml-3">{{ hazard.date_submitted.strftime('%Y-%m-%d') }}</small>
+            </div>
+            <div class="border-top pt-3">
+                <strong>Area: </strong>{{ AREA_LIST[ hazard.area ] }}
+                <strong class="ml-3">Location: </strong>{{ hazard.location }}
+                <strong class="ml-3">Hazard: </strong>{{ HAZARD_LIST[ hazard.hazard ] }}
+            </div >
+            <div>
+                <u>Hazard Details: </u>
+                <p class="article-content">{{ hazard.details }}</p>
+            </div>
+        </div>
+    </article>
+  {% endfor %}
+{% endblock content %}
