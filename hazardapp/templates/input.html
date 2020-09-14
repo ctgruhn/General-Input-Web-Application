@@ -9,49 +9,8 @@
                 <legend>Input</legend>
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
-                        {{ form.first_name.label(class="form-control-label")}}
+                        {{ form.area.label(class="form-control-label") }}
     <!-- TODO: Validate Info  -->
-                        {% if form.first_name.errors%}
-                        {{ form.first_name(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.first_name.errors %}
-                            <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                        {% else %}
-                        {{ form.first_name(class="form-control form-control-lg")}}
-                        {% endif %}
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        {{ form.last_name.label(class="form-control-label")}}
-                        {% if form.last_name.errors%}
-                        {{ form.last_name(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.last_name.errors %}
-                            <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.last_name(class="form-control form-control-lg")}}
-                    {% endif %}
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        {{ form.date.label(class="form-control-label")}}
-                        {% if form.date.errors%}
-                        {{ form.date(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.date.errors %}
-                            <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.date(class="form-control form-control-lg")}}
-                    {% endif %}
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-6 mb-3">
-                        {{ form.area.label(class="form-control-label")}}
                         {% if form.area.errors%}
                         {{ form.area(class="form-control form-control-lg is-invalid") }}
                         <div class="invalid-feedback">
@@ -60,11 +19,11 @@
                             {% endfor %}
                         </div>
                         {% else %}
-                        {{ form.area(class="form-control form-control-lg")}}
+                        {{ form.area(class="form-control form-control-lg") }}
                         {% endif %}
                     </div>
-                    <div class="col-md-6 mb-3">
-                        {{ form.location.label(class="form-control-label")}}
+                    <div class="col-md-4 mb-3">
+                        {{ form.location.label(class="form-control-label") }}
                         {% if form.location.errors%}
                         {{ form.location(class="form-control form-control-lg is-invalid") }}
                         <div class="invalid-feedback">
@@ -72,13 +31,54 @@
                             <span>{{ error }}</span>
                             {% endfor %}
                         </div>
+                    {% else %}
+                        {{ form.location(class="form-control form-control-lg") }}
+                    {% endif %}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        {{ form.date.label(class="form-control-label") }}
+                        {% if form.date.errors%}
+                        {{ form.date(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.date.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.date(class="form-control form-control-lg", type="date") }}
+                    {% endif %}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-8 mb-3">
+                        {{ form.task.label(class="form-control-label") }}
+                        {% if form.task.errors%}
+                        {{ form.task(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.task.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
                         {% else %}
-                        {{ form.location(class="form-control form-control-lg")}}
+                        {{ form.task(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        {{ form.hazard.label(class="form-control-label") }}
+                        {% if form.hazard.errors%}
+                        {{ form.hazard(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.hazard.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.hazard(class="form-control form-control-lg") }}
                         {% endif %}
                     </div>
                 </div>
-                <div class="form-row mb-3">
-                    {{ form.hazard.label(class="form-control-label")}}
+                <!-- <div class="form-row mb-3">
+                    {{ form.hazard.label(class="form-control-label") }}
                     {% if form.hazard.errors%}
                     {{ form.hazard(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
@@ -87,20 +87,27 @@
                         {% endfor %}
                     </div>
                     {% else %}
-                    {{ form.hazard(class="form-control form-control-lg")}}
+                    {{ form.hazard(class="form-control form-control-lg") }}
                     {% endif %}
-                </div>
+                </div> -->
             </div>
                 <div class="form-group">
-                    {{ form.info.label(class="form-control-label")}}
-                    {{ form.info(class="form-control form-control-lg")}}
+                    {{ form.details.label(class="form-control-label") }}
+                    {% if form.details.errors%}
+                    {{ form.details(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.details.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                        {{ form.details(class="form-control form-control-lg") }}
+                    {% endif %}
                 </div>
             </fieldset>
             <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info")}}
+                {{ form.submit(class="btn btn-outline-info") }}
             </div>
         </form>
     </div>
-    <!-- TODO: Push to database  -->
-    <!-- TODO: Redirect to new page (view page?) -->
 {% endblock content %}
